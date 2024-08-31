@@ -1,0 +1,142 @@
+.tela-cadastro{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #222222;
+    position: relative;
+
+    .tela{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+
+
+
+        .esquerda{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 50%;
+
+
+            img{
+                width: 250px;
+                padding: 20px 0px 0px 20px;
+            }
+
+            .textos{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2px;
+                
+
+                h1{
+                    font: 600 28px poppins;
+                    color: #fff;
+                }
+                
+                p{
+                    
+                    font: 400 20px poppins;
+                    color: #fff;
+                    width: 550px;
+                }
+            }
+        }
+
+        .direita{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            height: 100vh;
+
+            .cartao{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #fff;
+                border-radius: 12px;
+                padding: 40px 20px 0px 20px;
+                height: 700px;
+                gap: 20px;
+                z-index: 1;
+
+                h1{
+                    font: 600 34px poppins;
+                    color: #808080;
+                }
+
+                .perguntas{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    gap: 20px;
+
+                    .um{
+                        display: flex;
+                        gap: 15px;
+                        flex-direction: column;
+
+                        input{
+                            border: 1px solid gray;
+                            padding: 10px 5px;
+                            width: 220px;
+                            font: 400 16px poppins;
+                            border-radius: 7px;
+                        }
+                    }
+                }
+
+                input{
+                    border: 1px solid gray;
+                    padding: 10px 5px;
+                    width: 220px;
+                    border-radius: 7px;
+                    font: 400 16px poppins;
+                }
+
+                button{
+                    padding: 12px 45px;
+                    font: 500 18px poppins;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    background-color: #0067FF;
+                    border: none;
+                    color: black;
+                    transition: .5s;
+                }
+                button:hover{
+                    transform: scaleX(1.05);
+                    background-color: #3b3937;
+                    color: #fff;
+                }
+                button:active{
+                    transform: scaleX(1);
+                    background-color: #0067FF;
+                }
+
+                #erro{
+                    font: 600 16px poppins;
+                    color: red;
+                }
+
+            }
+        }
+    }
+    
+
+
+
+    .risco{
+        background-color:#EF7C1D ;
+        width: 100%;
+        height: 200px;
+        position: absolute;
+        z-index: 0;
+        top: 400px;
+    }
+}

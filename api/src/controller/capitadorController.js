@@ -24,11 +24,11 @@ endpoints.post('/cadastro', async (req, resp) => {
 
 })
 
-endpoints.get('/login/:email/:cpf', async (req, resp) => {
+endpoints.post('/login', async (req, resp) => {
 
     try {
         
-        let {email, cpf} = req.params;
+        let {email, cpf} = req.body;
 
         let x = await loginCapitadorService(email, cpf);
 
