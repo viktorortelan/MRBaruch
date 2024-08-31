@@ -44,10 +44,6 @@ async function entrarClick() {
             toast.error(err.response.data.erro);
         else 
             toast.error(err.message);
-        
-      if(err.response.status === 400) {
-        setErro('Credenciais Invalidas')
-      }
     }
   }
 
@@ -95,10 +91,6 @@ return (
 
                             </div>
                                 
-
-                            
-
-                            <p id='erro'>{erro}</p>
                             <button onClick={entrarClick}>Cadastrar</button>
 
                         </div>
