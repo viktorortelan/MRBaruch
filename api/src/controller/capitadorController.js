@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import cadastroCapitadorService from "../service/capitador/cadastroCapitadorService.js";
 import loginCapitadorService from "../service/capitador/loginCapitadorService.js";
+import listarServicoPeloCpfCapitadorService from "../service/capitador/listarServicoPeloCpfCapitador.js";
 
 const endpoints = Router();
 
@@ -39,6 +40,23 @@ endpoints.post('/login', async (req, resp) => {
         logErro(err);
         resp.status(400).send(criarErro(err))
     }
+
+})
+
+endpoints.get('/servico/:cpf', async (req, resp) => {
+
+  try {
+    
+    let cpf = req.params.cpf;
+
+    let x = await listarServicoPeloCpfCapitadorService(cpf);
+    resp.send(x);
+
+  }
+  catch (err) {
+    logErro(err);
+    resp.status(400).send(criarErro(err))
+}
 
 })
 

@@ -28,3 +28,29 @@ export async function loginCapitador(email, cpf) {
     return resp[0];
 
 }
+
+export async function listarServicoPeloCpfCapitador(cpfCapitador) {
+  
+  let comando = `
+    select 
+id_cliente 					id,
+ds_telefone					telefone,		
+ds_cpf_cnpj 				cpfCliente,		
+nm_cliente					nome,			
+ds_cpf_capitador			cpfCapitadorServico,		
+ds_servico					servico,			
+dt_contrato					contrato,			
+nr_valor_servico			valorServico,	
+ds_forma_pagamento			formaPagamento,	
+nr_parcelas					parcelas,			
+nr_valor_parcela			valorParcela,	
+nr_valor_entrada			valorEntrada,	
+nr_valor_total_recebido		valorRecebido
+from tb_cliente
+where ds_cpf_capitador = ?;
+  `
+
+  let resp = await con.query(comando, [cpfCapitador]);
+  return resp[0];
+
+}
