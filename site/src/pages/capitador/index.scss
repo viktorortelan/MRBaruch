@@ -1,0 +1,113 @@
+
+
+.pagina-Capitador {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #222222;
+    height: 100vh auto;
+    width: 100%;
+
+    img{
+        width: 200px;
+        margin: 10px 0px 0px 20px;
+    }
+
+  .section{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    .texto{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        h1{
+            color: #fff;
+            font: 600 36px poppins;
+        }
+
+        p{
+            color: #fff;
+            font: 400 16px poppins;
+            width: 320px;
+        }
+        
+    }
+  }
+
+  .table{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .tabela{
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        min-width: 400px;
+        border-radius: 5px 5px 0 0 ;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+        thead tr {
+            background-color: #EF7C1D;
+            color: #fff;
+            text-align: center;
+            font: 300 16px poppins;
+           
+        }
+        th{
+            width: 200px;
+            padding: 10px 0px;
+        }
+
+        td{
+            padding: 15px 15px;
+            color: #f3f3f3;
+            text-align: center;
+
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #dddd;
+        }
+
+        tbody tr:last-of-type {
+            border-bottom: 2px solid #EF7C1D;
+        }
+
+        tbody tr.active-row{
+            font-weight: bold;
+            color: #009879;
+        }
+
+    }
+
+  }
+
+  .section2{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 81.5%;
+    .card{
+        background-color: aquamarine;
+        padding: 10px 20px;
+        width: 325px;
+        border-radius: 10px;
+        margin: 20px 0 50px;
+        
+    
+        h1{
+            font: 500 18px poppins;
+    
+        }
+      }
+
+  }
+
+}
