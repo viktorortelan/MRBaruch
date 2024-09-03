@@ -2,9 +2,12 @@ import './index.scss';
 import axios from "axios";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import storage from 'local-storage';
 
 import { toast } from 'react-toastify';
 import { login } from '../../api/capitadorApi.js';
+
+
 
 
 export default function Login() {
@@ -17,6 +20,9 @@ export default function Login() {
     async function verificar() {
         try {
             const r = await login(email, cpf);
+            storage('capitador-logado', r)
+
+            toast.success("Logado com sucesso!");
 
             setTimeout(() => {
                 navigate('/capitador')

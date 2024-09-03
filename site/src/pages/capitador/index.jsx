@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import storage from 'local-storage';
 import './index.scss'
 
 import axios from 'axios';
@@ -6,8 +8,29 @@ import axios from 'axios';
 export default function Capitador() {
     
     const [servico, setServico] = useState([]);
+    const [usuario, setUsuario] = useState('-');
+    const [cpf, setCpf] = useState('-');
+    
     let x = valorComissao();
-
+    
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if(storage('capitador-logado')) {
+            navigate('/capitador')
+            const usuarioLogado = storage('capitador-logado');
+            setUsuario(usuarioLogado.nome);
+            setCpf(usuarioLogado.cpf)
+        } else {
+            navigate('/login')
+        }
+    }, [])
+    
+    useEffect(() => {
+        if (cpf !== '-') {  // Executa apenas se o CPF não for o valor inicial
+            listarServico();
+        }
+    }, [cpf]);
 
     function valorComissao() {
         
@@ -28,13 +51,9 @@ export default function Capitador() {
 
     }
 
-    useEffect(() => {
-        listarServico();
-    }, [])
-
     async function listarServico() {
         
-        let url = 'http://localhost:5010/servico/44887017871';
+        let url = 'http://localhost:5010/servico/' + cpf;
         let response = await axios.get(url);
 
         console.log(response.data);
@@ -56,13 +75,28 @@ export default function Capitador() {
 
     }
 
+    function sairClick() {
+        storage.remove('capitador-logado');
+        navigate('/login');
+    }
+
+    function primeiroNome(nome) {
+        
+        let a = nome.substring(0, nome.indexOf(" "));
+        return a;
+
+    }
+
     return(
         <div className='pagina-Capitador'>
-            <img src="/assets/images/MR-Baruch-Logo.png" alt="logo" />
-            
+            <div className="cabecalho">
+                <img src="/assets/images/MR-Baruch-Logo.png" alt="logo" />
+                <button onClick={sairClick}>Sair</button>
+            </div>
+
             <div className="section">
             <div className="texto">
-                 <h1>Seja bem-vindo(a), { }</h1>
+                 <h1>Seja bem-vindo(a), {usuario}</h1>
                  <p>Fique de olho na sua jornada como um(a) capitador(a), aqui você tem todas informações dos clientes que você chamou</p>
             </div>
             </div>
@@ -84,7 +118,7 @@ export default function Capitador() {
                         {servico.map(item =>
                         <tr>
                             <td>{item.id}</td>
-                            <td>{item.cpf}</td>
+                            <td>{primeiroNome(usuario)}</td>
                             <td>{item.nome}</td>
                             <td>vendido</td>
                             <td>{item.valor}</td>
@@ -98,9 +132,9 @@ export default function Capitador() {
 
 
             <div className="section2">
-            <div className="card">
+                <div className="card">
                     <h1>Sua comissão total é de : {x} </h1>
-            </div>
+                </div>
             </div>
         </div>
     );
