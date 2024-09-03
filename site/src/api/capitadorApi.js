@@ -30,6 +30,6 @@ export async function login(email, cpf) {
       email: email,
       cpf: cpf
     });
-
+ 
     return r.data;  
 }
