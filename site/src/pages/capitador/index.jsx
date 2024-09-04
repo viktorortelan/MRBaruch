@@ -127,7 +127,6 @@ export default function Capitador() {
             <div className="cabecalho">
                 <img src="/assets/images/MR-Baruch-Logo.png" alt="logo" />
                 <button onClick={sairClick}>Sair</button>
-                <button onClick={gerarContrato}>click me</button>
             </div>
 
             <div className="section">
