@@ -10,6 +10,7 @@ export default function Capitador() {
     const [servico, setServico] = useState([]);
     const [usuario, setUsuario] = useState('-');
     const [cpf, setCpf] = useState('-');
+    const [cpfCliente, setCpfCliente] = useState('');
     
     let x = valorComissao();
     
@@ -51,6 +52,39 @@ export default function Capitador() {
 
     }
 
+
+    async function gerarContrato() {
+        
+        try {
+            let url = 'http://localhost:5010/generate-word/' + cpfCliente;
+            let response = await axios.post(url, null, { // Corrigido para incluir null como payload
+                responseType: 'blob' // Configura o Axios para tratar a resposta como um arquivo binário (blob)
+            });
+    
+            // Criar um Blob com os dados recebidos e definir o tipo de conteúdo
+            const fileBlob = new Blob([response.data], { type: response.headers['content-type'] });
+    
+            // Criar uma URL para o Blob
+            const fileUrl = URL.createObjectURL(fileBlob);
+    
+            // Criar um elemento de download e clicar automaticamente
+            const link = document.createElement('a');
+            link.href = fileUrl;
+            link.setAttribute('download', 'contrato.docx'); // Defina o nome do arquivo
+            document.body.appendChild(link);
+            link.click();
+    
+            // Limpar após o download
+            link.remove();
+            URL.revokeObjectURL(fileUrl);
+    
+        } catch (error) {
+            console.error('Erro ao gerar o contrato:', error);
+        }
+
+
+    }
+
     async function listarServico() {
         
         let url = 'http://localhost:5010/servico/' + cpf;
@@ -66,11 +100,12 @@ export default function Capitador() {
                 id: item.id,
                 cpf: item.cpfCapitadorServico,
                 nome: item.nome,
-                valor: item.valorServico
+                valor: item.valorServico,
+                cpfCliente: item.cpfCliente
             })
 
         }
-
+        
         setServico(listaServico);
 
     }
@@ -92,6 +127,7 @@ export default function Capitador() {
             <div className="cabecalho">
                 <img src="/assets/images/MR-Baruch-Logo.png" alt="logo" />
                 <button onClick={sairClick}>Sair</button>
+                <button onClick={gerarContrato}>click me</button>
             </div>
 
             <div className="section">
@@ -106,11 +142,12 @@ export default function Capitador() {
 
                     <thead>
                         <tr>
-                            <th>id</th>
+                            <th>ID</th>
                             <th>Capitador</th>
-                            <th>cliente</th>
+                            <th>Nome Cliente</th>
+                            <th>Cpf Cliente</th>
                             <th>Status</th>
-                            <th>comissão</th>
+                            <th>Comissão</th>
                          </tr>
                     </thead>
                     
@@ -120,6 +157,7 @@ export default function Capitador() {
                             <td>{item.id}</td>
                             <td>{primeiroNome(usuario)}</td>
                             <td>{item.nome}</td>
+                            <td>{item.cpfCliente}</td>
                             <td>vendido</td>
                             <td>{item.valor}</td>
                         </tr>
@@ -136,6 +174,12 @@ export default function Capitador() {
                     <h1>Sua comissão total é de : {x} </h1>
                 </div>
             </div>
+
+            <div className='section3'>
+                <input type="text" placeholder='Insira o CPF do cliente' value={cpfCliente} onChange={e => setCpfCliente(e.target.value)} name="" id="" />
+                <button onClick={gerarContrato}>👉</button>
+            </div>
+
         </div>
     );
 
