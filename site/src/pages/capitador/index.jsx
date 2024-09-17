@@ -121,17 +121,29 @@ export default function Capitador() {
         return a;
 
     }
-
+    const [copiado, setCopiado] = useState(false);
+    const linkParaCopiar = "https://1sh.co/LimpaNomeEdilsonUber";
+  
+    const copiarParaAreaDeTransferencia = () => {
+      navigator.clipboard.writeText(linkParaCopiar).then(() => {
+        setCopiado(true);
+        setTimeout(() => setCopiado(false), 2000); // Reseta o estado após 2 segundos
+      });
+    };
     return(
         <div className='pagina-Capitador'>
             <div className="cabecalho">
                 <img src="/assets/images/MR-Baruch-Logo.png" alt="logo" />
                 <button onClick={sairClick}>Sair</button>
+
+                <button onClick={copiarParaAreaDeTransferencia}>
+        {copiado ? "Link copiado!" : "Copiar link"}
+      </button>
             </div>
 
             <div className="section">
             <div className="texto">
-                 <h1>Seja bem-vindo(a), {usuario}</h1>
+                 <h1>Seja bem-vindo(a),  <nav>{ usuario} </nav> </h1>
                  <p>Fique de olho na sua jornada como um(a) capitador(a), aqui você tem todas informações dos clientes que você chamou</p>
             </div>
             </div>

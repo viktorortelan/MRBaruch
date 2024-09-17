@@ -1,5 +1,5 @@
 import { Router } from "express";
-
+import { cadastros } from "../repository/capitadorRepository.js";
 import cadastroCapitadorService from "../service/capitador/cadastroCapitadorService.js";
 import loginCapitadorService from "../service/capitador/loginCapitadorService.js";
 import listarServicoPeloCpfCapitadorService from "../service/capitador/listarServicoPeloCpfCapitador.js";
@@ -61,7 +61,10 @@ endpoints.get('/servico/:cpf', async (req, resp) => {
 })
 
 
-
+endpoints.get('/mostrar', async (req,resp) =>{
+    let registro = await cadastros();
+    resp.send(registro);
+})
 
 
 export default endpoints;

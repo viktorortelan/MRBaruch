@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/login';
 import Cadastro from './pages/cadastro';
 import Capitador from './pages/capitador';
+import LoginCliente from './pages/loginCliente';
 
 
 import { ToastContainer } from 'react-toastify';

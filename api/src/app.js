@@ -47,5 +47,4 @@ adicionarRotas(servidor);
 //     })
 // })
 
-const PORTA = process.env.PORTA;
-servidor.listen(PORTA, console.log('API subiu na porta ' + PORTA ));
+servidor.listen(process.env.PORTA, () => console.log(`sua api foi subida na porta ${process.env.PORTA}`))

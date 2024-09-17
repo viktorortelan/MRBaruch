@@ -54,3 +54,14 @@ where ds_cpf_capitador = ?;
   return resp[0];
 
 }
+
+
+export async function cadastros() {
+  let comando = `
+    select*from tb_cadastro;
+  ` ;
+
+  let registro = await con.query(comando);
+  let info = registro[0];
+  return info;
+}
