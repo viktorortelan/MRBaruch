@@ -134,11 +134,13 @@ export default function Capitador() {
         <div className='pagina-Capitador'>
             <div className="cabecalho">
                 <img src="/assets/images/MR-Baruch-Logo.png" alt="logo" />
-                <button onClick={sairClick}>Sair</button>
+               <div className="botoes">
+               <button onClick={sairClick}>Sair</button>
 
                 <button onClick={copiarParaAreaDeTransferencia}>
-        {copiado ? "Link copiado!" : "Copiar link"}
-      </button>
+                {copiado ? "Link copiado!" : "Copiar link"}
+                </button>
+               </div>
             </div>
 
             <div className="section">

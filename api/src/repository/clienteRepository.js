@@ -5,7 +5,7 @@ export async function buscarDadosClientePeloCpf(cpf) {
   let comando = `
     SELECT * 
     FROM tb_cliente 
-    WHERE cpf_cnpj_cliente = ?;
+    WHERE preenchimento_manual_cpf_cnpj_cliente  = ?;
   `
 
   let resp = await con.query(comando, [cpf]);

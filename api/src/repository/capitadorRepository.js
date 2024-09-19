@@ -33,22 +33,27 @@ export async function listarServicoPeloCpfCapitador(cpfCapitador) {
   
   let comando = `
     select 
-id_cliente 					id,
-ds_telefone					telefone,		
-ds_cpf_cnpj 				cpfCliente,		
-nm_cliente					nome,			
-ds_cpf_capitador			cpfCapitadorServico,		
-ds_servico					servico,			
-dt_contrato					contrato,			
-nr_valor_servico			valorServico,	
-ds_forma_pagamento			formaPagamento,	
-nr_parcelas					parcelas,			
-nr_valor_parcela			valorParcela,	
-nr_valor_entrada			valorEntrada,	
-nr_valor_total_recebido		valorRecebido
-from tb_cliente
-where ds_cpf_capitador = ?;
-  `
+        id_cliente,
+        telefone,		
+        CPF_CNPJ_cliente,		
+        codigo,			
+        data_atendimento,		
+        nome,			
+        preenchimento_manual_cpf_cnpj_cliente,			
+        atendente,	
+        valor_primeira_entrada,	
+        data_primeira_entrada,			
+        cliente_dividiu_entrada,	
+        valor_segunda_entrada,	
+        data_segunda_entrada,
+        parcelou_contrato,
+        forma_parcelamento,
+        forma_pagamento,
+        quantidade_parcelas,
+        valor_parcelas,
+        primeira_parcela
+    from tb_cliente where codigo = ?;
+`;
 
   let resp = await con.query(comando, [cpfCapitador]);
   return resp[0];
