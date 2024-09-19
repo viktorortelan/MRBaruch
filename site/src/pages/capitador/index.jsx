@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import storage from 'local-storage';
+import DownloadZipButton from '../../components/buttonMaterial';
 import './index.scss'
 
 import axios from 'axios';
@@ -136,6 +137,8 @@ export default function Capitador() {
                 <img src="/assets/images/MR-Baruch-Logo.png" alt="logo" />
                <div className="botoes">
                <button onClick={sairClick}>Sair</button>
+
+                <DownloadZipButton/>
 
                 <button onClick={copiarParaAreaDeTransferencia}>
                 {copiado ? "Link copiado!" : "Copiar link"}

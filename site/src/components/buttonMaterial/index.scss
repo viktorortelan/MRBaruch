@@ -1,0 +1,29 @@
+.maeButton {
+
+    button {
+        width: 100px;
+        height: 40px;
+        border-radius: 50px;
+        border: 2px solid transparent;
+        font-family: 'poppins';
+        cursor: pointer;
+        transition: 0.3s;
+        outline: none;
+    }
+    
+    button:hover {
+        cursor: pointer;
+        background-color: #222;
+        color: white;
+        border: 2px solid white;
+        transform: scale(1.04);
+    }
+    
+    button:active {
+        cursor: pointer;
+        background-color:#000;
+        color: white;
+        border: 2px solid white;
+        transform: scale(1);
+    }
+}

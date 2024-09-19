@@ -20,6 +20,7 @@
         }
 
         .botoes{
+           
             button {
                 width: 100px;
                 height: 40px;
@@ -29,6 +30,7 @@
                 cursor: pointer;
                 transition: 0.3s;
                 outline: none;
+                margin-bottom: 10px;
             }
     
             button:hover {
